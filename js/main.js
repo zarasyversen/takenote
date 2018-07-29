@@ -12,12 +12,10 @@ if(!navigator.onLine) {
 if (typeof(Storage) !== "undefined") {
     var saveBtn = document.querySelector('.js-save');
     var note = document.querySelector('.note');
-    console.log('im here');
-
+    
     // Store The Note 
     function storeNote(){
     	savedNote = note.value;
-    	console.log(savedNote);
     	localStorage.setItem('saved', savedNote);
     };
 
@@ -27,7 +25,7 @@ if (typeof(Storage) !== "undefined") {
     if(localStorage.getItem('saved')){
     	// Add it in to our textarea
 		note.innerHTML = localStorage.getItem('saved');
-    }
+    } 
     
 } else {
 	alert('Sorry, I am unable to save this');
