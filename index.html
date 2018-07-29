@@ -1,1 +1,33 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Take Note</title>
+		<style>
+			.message {
+				display: none;
+				background: pink;
+				padding: 20px;
+				text-align: center;
+			}
+			.show {
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="message online">
+			<h2>Welcome</h2>
+		</div>
+		<div class="message offline">
+			<h2>You are Offline, Please Connect.</h2>
+		</div>
+		<div class="wrapper">
+			<h1>Take Note</h1>
+			<form>
+				<label for="note">Take a Note:</label>
+				<textarea id="note" name="note"></textarea>
+			</form>
+		</div>
+		<script src="js/main.js"></script>
+	</body>
+</html>
