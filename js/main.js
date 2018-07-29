@@ -3,7 +3,7 @@
 //
 if(!navigator.onLine) {
 	var message = document.querySelector('.message');
-	message.innerHTML = "You are Offline"
+	message.innerHTML = "You are Offline ☹️"
 } 
 
 //
