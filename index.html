@@ -3,25 +3,18 @@
 	<head>
 		<title>Take Note</title>
 		<style>
-			.message {
-				display: none;
+			.message__wrapper {
 				background: pink;
 				padding: 20px;
 				text-align: center;
 			}
-			.show {
-				display: block;
-			}
 		</style>
 	</head>
 	<body>
-		<div class="message online">
-			<h2>Welcome</h2>
+		<div class="message__wrapper">
+			<h2 class="message">Welcome</h2>
 		</div>
-		<div class="message offline">
-			<h2>You are Offline, Please Connect.</h2>
-		</div>
-		<div class="wrapper">
+		<div class="app__wrapper">
 			<h1>Take Note</h1>
 			<form>
 				<label for="note">Take a Note:</label>
