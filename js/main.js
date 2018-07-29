@@ -1,7 +1,34 @@
 //
-// Change Message depending if user is online or offline 
+// Change message if user is offline 
 //
-if(!navigator.onLine) { 
+if(!navigator.onLine) {
 	var message = document.querySelector('.message');
 	message.innerHTML = "You are Offline"
 } 
+
+//
+//	Check that localstorage is supported
+//
+if (typeof(Storage) !== "undefined") {
+    var saveBtn = document.querySelector('.js-save');
+    var note = document.querySelector('.note');
+    console.log('im here');
+
+    // Store The Note 
+    function storeNote(){
+    	savedNote = note.value;
+    	console.log(savedNote);
+    	localStorage.setItem('saved', savedNote);
+    };
+
+    saveBtn.addEventListener('click', storeNote);
+
+    // Check if there is a stored note already
+    if(localStorage.getItem('saved')){
+    	// Add it in to our textarea
+		note.innerHTML = localStorage.getItem('saved');
+    }
+    
+} else {
+	alert('Sorry, I am unable to save this');
+}
