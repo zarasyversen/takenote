@@ -7,6 +7,7 @@
 		<meta name="theme-color" content="#dbffad"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="manifest" href="manifest.json">
+		<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 	</head>
 	<body>
 		<div class="message__wrapper">
@@ -22,11 +23,14 @@
 		</div>
 		<script src="js/main.js"></script>
 		 <script>
-      if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/js/sw.js')
-          .then(function() {
-                console.log('Service Worker Registered');
-          });
+      if ('serviceWorker' in navigator) {
+	      	navigator.serviceWorker.register('sw.js')
+	      	.then(function(registration) {
+	      		console.log('Registered:', registration);
+	      	})
+	      	.catch(function(error) {
+	      		console.log('Registration failed: ', error);
+	      	});
       }
     </script>
 	</body>
