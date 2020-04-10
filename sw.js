@@ -16,27 +16,39 @@ self.addEventListener('install', function(event) {
 });
 
 
+//
+// Get what we have in our cache or fetch what we need
+// 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
     .then(function(response) {
-      return response || fetchAndCache(event.request);
+      return response || fetchAndCache(event.request.url);
     })
   );
+
+
 });
 
+//
+// Fetch & Cache what we don't have
+//
 function fetchAndCache(url) {
+
   return fetch(url)
   .then(function(response) {
-    // Check if we received a valid response
+
     if (!response.ok) {
       throw Error(response.statusText);
     }
+
     return caches.open(cacheName)
+
     .then(function(cache) {
       cache.put(url, response.clone());
       return response;
     });
+    
   })
   .catch(function(error) {
     console.log('Request failed:', error);
