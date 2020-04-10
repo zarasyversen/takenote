@@ -1,13 +1,14 @@
-var CACHE_NAME = 'static-cache';
+var cacheName = 'static-cache';
 var urlsToCache = [
   '.',
   'index.html',
   'css/main.css',
   'js/main.js'
 ];
+
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches.open(cacheName)
     .then(function(cache) {
       return cache.addAll(urlsToCache);
     })

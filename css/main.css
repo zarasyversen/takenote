@@ -2,7 +2,7 @@ body {
 	background: #eee;
 	background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);
 	min-height: 100vh;
-	font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Courier New', sans-serif;
 	text-align: center;
 }
 
@@ -43,7 +43,7 @@ body {
 	margin: 10px 0 0;
 	padding: 10px;
 	background: #d61987;
-	font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Courier New', sans-serif;
 	color: white;
 	text-transform: uppercase;
 	letter-spacing: 1px;
