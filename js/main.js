@@ -24,16 +24,20 @@ if(!navigator.onLine) {
 //	Check that localstorage is supported
 //
 if (typeof(Storage) !== "undefined") {
-    var saveBtn = document.querySelector('.js-save');
-    var note = document.querySelector('.js-note');
+    var form = document.querySelector('.js-save'),
+    note = document.querySelector('.js-note');
     
     // Store The Note 
-    function storeNote(){
+    function storeNote(event){
+
+        // Don't submit
+        event.preventDefault();
+
     	savedNote = note.value;
     	localStorage.setItem('saved', savedNote);
     };
 
-    saveBtn.addEventListener('click', storeNote);
+    form.addEventListener('submit', storeNote);
 
     // Check if there is a stored note already
     if (localStorage.getItem('saved')){
@@ -41,9 +45,6 @@ if (typeof(Storage) !== "undefined") {
 		note.innerHTML = localStorage.getItem('saved');
     } 
 
-    // Save on input as well, you dont have to click save.
-
-    
 } else {
 	alert('Sorry, I am unable to save this');
 }
