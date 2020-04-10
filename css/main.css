@@ -1,6 +1,6 @@
 body {
 	background: #eee;
-	background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);
+	background-image: linear-gradient(to top, #A53786 0%, #f5efef 100%);
 	min-height: 100vh;
 	font-family: 'Open Sans', sans-serif;
 	text-align: center;
@@ -42,7 +42,7 @@ body {
 	border-radius: 5px;
 	margin: 10px 0 0;
 	padding: 10px;
-	background: #d61987;
+	background: #A53786;
 	font-family: 'Open Sans', sans-serif;
 	color: white;
 	text-transform: uppercase;

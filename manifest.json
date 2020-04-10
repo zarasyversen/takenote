@@ -2,30 +2,20 @@
   "name": "Take Note App",
   "short_name": "Take a Note",
   "icons": [{
-    "src": "icons/Icon-128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    }, {
-      "src": "icons/Icon-144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    }, {
-      "src": "icons/Icon-152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    }, {
-      "src": "icons/Icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/Icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
+    "src": "images/touch/icon144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "images/touch/icon168.png",
+    "sizes": "168x168",
+    "type": "image/png"
+  }, {
+    "src": "images/touch/icon192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }],
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "theme_color": "#FF9800"
+  "theme_color": "#A53786"
 }

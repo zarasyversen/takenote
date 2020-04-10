@@ -26,8 +26,6 @@ self.addEventListener('fetch', function(event) {
       return response || fetchAndCache(event.request.url);
     })
   );
-
-
 });
 
 //
