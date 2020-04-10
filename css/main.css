@@ -1,56 +1,121 @@
+
+:root {
+	--page-max-width: 1200px;
+  --font-family: 'Open Sans', sans-serif;
+  --font-family--text: 'Courier New', serif;
+  --font-size__base: 1em;
+  --font-size__large: 1.5em;
+  --spacing-large: 40px;
+  --spacing-base: 20px;
+  --spacing-small: 10px;
+  --white: #ffffff;
+  --light-grey: #eee;
+  --dark-grey: #333;
+  --light-peach: #fde6e3;
+  --focus-outline: 1px dashed var(--dark-grey);
+  --button-background: var(--dark-grey);
+}
+
 body {
-	background: #eee;
-	background-image: linear-gradient(to top, #A53786 0%, #f5efef 100%);
-	min-height: 100vh;
-	font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-family);
+  background: var(--light-grey);
+  background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
 	text-align: center;
+  margin: 0;
 }
 
-.message__wrapper {
-	margin: 50px auto 20px;
+.visually-hidden {
+	position: absolute;
+  height: 1px; 
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; /* added line */
 }
 
-.app__wrapper {
-	width: 80%;
+.take-note__wrapper {
+	max-width: var(--page-max-width);
 	margin: 0 auto;
-	max-width: 500px;
-	background: rgba(255, 255, 255, .6);
-	padding: 20px;
-	border-radius: 5px;
 }
 
-.note {
+.take-note__header {
+	background: var(--white);
+	padding: var(--spacing-small);
+}
+
+.take-note__header-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
+.take-note__header h1, 
+.take-note__header h2 {
+	font-size: var(--font-size__base);
+}
+
+.take-note__section {
+	width: 80%;
+	margin: var(--spacing-large) auto;
+	background: var(--white);
+	padding: var(--spacing-base);
+}
+
+.take-note__input {
 	display: block;
 	margin: 5px auto 0;
+	width: 100%;
 	min-width: 250px;
 	min-height: 150px;
-	border: 2px solid transparent;
-	border-radius: 5px;
-	font-size: 14px;
-	resize: none;
+	max-width: 300px;
+	background: var(--light-peach);
+	border: none;
+	font-size: var(--font-size__base);
+	font-family: var(--font-family--text);
 }
 
-.note:focus {
-	outline: 0;
-	border: 2px solid #d61987;
-	border-radius: 5px;
+.take-note__input:hover,
+.take-note__input:focus {
+	outline: var(--focus-outline);
 }
 
-.button {
-	outline: 0;
-	border: 0;
-	border-radius: 5px;
-	margin: 10px 0 0;
-	padding: 10px;
-	background: #A53786;
-	font-family: 'Open Sans', sans-serif;
+.take-note__button {
+	border: none;
+	margin: var(--spacing-small) 0 0;
+	padding: var(--spacing-small);
+	background: var(--button-background);
+	font-family: var(--font-family);
 	color: white;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	cursor: pointer;
-	font-size: 15px;
 }
 
-.button:hover {
-	opacity: 0.9;
+.take-note__button:hover,
+.take-note__button:focus {
+	color: var(--light-peach);
+	opacity: .9;
+}
+
+.take-note__button:focus {
+	outline: var(--focus-outline);
+}
+
+/* Desktop */
+@media screen and (min-width: 768px) {
+	.take-note__header h1, 
+	.take-note__header h2 {
+		font-size: var(--font-size__large);
+	}
+
+	.take-note__main {
+		display: flex;
+		justify-content: center;
+	}
+
+	.take-note__section {
+		width: 100%;
+		margin: var(--spacing-large) var(--spacing-base) 0 0;
+	}
 }

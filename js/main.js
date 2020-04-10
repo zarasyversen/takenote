@@ -16,7 +16,7 @@ if ('serviceWorker' in navigator) {
 // Change message if user is offline 
 //
 if(!navigator.onLine) {
-	var message = document.querySelector('.message');
+	var message = document.querySelector('.js-message');
 	message.innerHTML = "You are Offline ☹️"
 } 
 
@@ -25,7 +25,7 @@ if(!navigator.onLine) {
 //
 if (typeof(Storage) !== "undefined") {
     var saveBtn = document.querySelector('.js-save');
-    var note = document.querySelector('.note');
+    var note = document.querySelector('.js-note');
     
     // Store The Note 
     function storeNote(){
@@ -36,10 +36,13 @@ if (typeof(Storage) !== "undefined") {
     saveBtn.addEventListener('click', storeNote);
 
     // Check if there is a stored note already
-    if(localStorage.getItem('saved')){
+    if (localStorage.getItem('saved')){
     	// Add it in to our textarea
 		note.innerHTML = localStorage.getItem('saved');
     } 
+
+    // Save on input as well, you dont have to click save.
+
     
 } else {
 	alert('Sorry, I am unable to save this');

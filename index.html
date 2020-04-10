@@ -12,17 +12,26 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<div class="message__wrapper">
-			<h2 class="message">You are Online 😎</h2>
-		</div>
-		<div class="app__wrapper">
-			<h1>Take A Note</h1>
-			<form>
-				<label for="note">Don't forget to remember this:</label>
-				<textarea class="note" id="note" name="note"></textarea>
-				<button type="button" class="button js-save">Save your note</button>
-			</form>
-		</div>
+		<header class="take-note__header">
+			<div class="take-note__header-wrapper take-note__wrapper">
+				<h1>Take A Note</h1>
+				<h2 class="js-message">You are Online 😎</h2>
+			</div>
+		</header>
+		<main class="take-note__main take-note__wrapper">
+			<section class="take-note__section">
+				<h3>Make a new note</h3>
+				<form>
+					<label for="note" class="visually-hidden">Write a note that you want to save</label>
+					<textarea class="take-note__input js-note" id="note"></textarea>
+					<button type="button" class="take-note__button js-save">Save your note</button>
+				</form>
+			</section>
+			<section class="take-note__section saved-notes">
+				<h3>Your previously saved notes</h3>
+				<ul class="saved-notes__list js-saved-notes"></ul>
+			</section>
+		</main>
 		<script src="js/main.js"></script>
 	</body>
 </html>
