@@ -66,23 +66,8 @@ function updateList() {
     if (notesList) {
 
         // Create <li> with the latest item from the array
-        var latestNote = storedNotes[storedNotes.length - 1],
-            listItem = document.createElement('li'),
-            note = document.createElement('p'),
-            removeBtn = document.createElement('button');
-
-        listItem.classList.add('take-note__saved-list-item');
-        listItem.setAttribute('data-index', latestNote);
-
-        note.innerHTML = latestNote;
-
-        removeBtn.setAttribute('type', 'button');
-        removeBtn.innerHTML = 'Remove';
-        removeBtn.classList.add('js-delete-note', 'take-note__button');
-        removeBtn.addEventListener('click', deleteNoteFromList);
-
-        listItem.appendChild(note);
-        listItem.appendChild(removeBtn);
+        var latestNoteIndex = storedNotes.length - 1,
+            listItem = createListItem(storedNotes, latestNoteIndex);
 
         // Add in to our list
         notesList.appendChild(listItem)
@@ -115,22 +100,7 @@ function createList() {
         // Create Each List Item
         for (var index = 0; index < notesArray.length; index++) {
 
-            var listItem = document.createElement('li'),
-                note = document.createElement('p'),
-                removeBtn = document.createElement('button');
-
-            listItem.classList.add('take-note__saved-list-item');
-            listItem.setAttribute('data-index', index);
-
-            note.innerHTML = notesArray[index];
-
-            removeBtn.setAttribute('type', 'button');
-            removeBtn.innerHTML = 'Remove';
-            removeBtn.classList.add('js-delete-note', 'take-note__button');
-            removeBtn.addEventListener('click', deleteNoteFromList);
-
-            listItem.appendChild(note);
-            listItem.appendChild(removeBtn);
+            var listItem = createListItem(notesArray, index);
             notesCollection.appendChild(listItem);
         }
 
@@ -138,6 +108,31 @@ function createList() {
         notesList.appendChild(notesCollection);
         container.appendChild(notesList);
     } 
+}
+
+//
+// Create List Item
+//
+function createListItem(notesArray, index) {
+
+    var listItem = document.createElement('li'),
+        note = document.createElement('p'),
+        removeBtn = document.createElement('button');
+
+    listItem.classList.add('take-note__saved-list-item');
+    listItem.setAttribute('data-index', index);
+
+    note.innerHTML = notesArray[index];
+
+    removeBtn.setAttribute('type', 'button');
+    removeBtn.innerHTML = 'Remove';
+    removeBtn.classList.add('js-delete-note', 'take-note__button');
+    removeBtn.addEventListener('click', deleteNoteFromList);
+
+    listItem.appendChild(note);
+    listItem.appendChild(removeBtn);
+
+    return listItem;
 }
 
 //
