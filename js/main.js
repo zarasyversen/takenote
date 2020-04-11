@@ -24,11 +24,12 @@ if(!navigator.onLine) {
 //	Check that localstorage is supported
 //
 if (typeof(Storage) !== "undefined") {
-    var form = document.querySelector('.js-save');
+    var form = document.querySelector('.js-save-note');
 
     form.addEventListener('submit', addNoteToList);
 
-    createList(); 
+    createList();
+
 } else {
     alert('local storage not supported');
 }
@@ -66,10 +67,22 @@ function updateList() {
 
         // Create <li> with the latest item from the array
         var latestNote = storedNotes[storedNotes.length - 1],
-            listItem = document.createElement('li');
+            listItem = document.createElement('li'),
+            note = document.createElement('p'),
+            removeBtn = document.createElement('button');
 
         listItem.classList.add('take-note__saved-list-item');
-        listItem.innerHTML = latestNote;
+        listItem.setAttribute('data-index', latestNote);
+
+        note.innerHTML = latestNote;
+
+        removeBtn.setAttribute('type', 'button');
+        removeBtn.innerHTML = 'Remove';
+        removeBtn.classList.add('js-delete-note', 'take-note__button');
+        removeBtn.addEventListener('click', deleteNoteFromList);
+
+        listItem.appendChild(note);
+        listItem.appendChild(removeBtn);
 
         // Add in to our list
         notesList.appendChild(listItem)
@@ -102,10 +115,22 @@ function createList() {
         // Create Each List Item
         for (var index = 0; index < notesArray.length; index++) {
 
-            var listItem = document.createElement('li');
-                listItem.classList.add('take-note__saved-list-item')
-                listItem.innerHTML = notesArray[index];
-            
+            var listItem = document.createElement('li'),
+                note = document.createElement('p'),
+                removeBtn = document.createElement('button');
+
+            listItem.classList.add('take-note__saved-list-item');
+            listItem.setAttribute('data-index', index);
+
+            note.innerHTML = notesArray[index];
+
+            removeBtn.setAttribute('type', 'button');
+            removeBtn.innerHTML = 'Remove';
+            removeBtn.classList.add('js-delete-note', 'take-note__button');
+            removeBtn.addEventListener('click', deleteNoteFromList);
+
+            listItem.appendChild(note);
+            listItem.appendChild(removeBtn);
             notesCollection.appendChild(listItem);
         }
 
@@ -113,4 +138,25 @@ function createList() {
         notesList.appendChild(notesCollection);
         container.appendChild(notesList);
     } 
+}
+
+//
+// Delete Note
+//
+function deleteNoteFromList() {
+    var item = this.parentNode,
+        index = item.getAttribute('data-index'),
+        notesArray = JSON.parse(localStorage.getItem("notes")),
+        confirmDeletion = window.confirm("Are you sure you want to delete this?");
+
+    if (confirmDeletion) {
+
+        // Delete from array, update localstorage array
+        notesArray.splice(index, 1);
+        localStorage.setItem('notes', JSON.stringify(notesArray));
+
+        // Delete from dom
+        item.remove();
+    }
+
 }

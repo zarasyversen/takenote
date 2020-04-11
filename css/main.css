@@ -8,6 +8,7 @@
   --spacing-large: 40px;
   --spacing-base: 20px;
   --spacing-small: 10px;
+  --spacing-xsmall: 5px;
   --white: #ffffff;
   --light-grey: #eee;
   --dark-grey: #333;
@@ -102,6 +103,31 @@ body {
 	outline: var(--focus-outline);
 }
 
+.take-note__saved-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.take-note__saved-list-item {
+  padding: var(--spacing-small);
+  margin: var(--spacing-xsmall) 0;
+  background: var(--light-peach);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.take-note__saved-list-item p {
+  flex-basis: 90%;
+  padding-right: var(--spacing-small);
+}
+
+.take-note__saved-list-item button {
+  flex-basis: 10%;
+}
+
 /* Desktop */
 @media screen and (min-width: 768px) {
 	.take-note__header h1, 
@@ -116,6 +142,6 @@ body {
 
 	.take-note__section {
 		width: 100%;
-		margin: var(--spacing-large) var(--spacing-base) 0 0;
+		margin: var(--spacing-large) var(--spacing-small);
 	}
 }
