@@ -11,6 +11,7 @@
   --spacing-xsmall: 5px;
   --white: #ffffff;
   --light-grey: #eee;
+  --grey: #a5a5a5;
   --dark-grey: #333;
   --light-peach: #fde6e3;
   --focus-outline: 1px dashed var(--dark-grey);
@@ -90,17 +91,40 @@ body {
 	color: white;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	cursor: pointer;
+}
+.take-note__button:not([disabled]) {
+  cursor: pointer;
 }
 
-.take-note__button:hover,
-.take-note__button:focus {
+.take-note__button:not([disabled]):hover,
+.take-note__button:not([disabled]):focus {
 	color: var(--light-peach);
 	opacity: .9;
 }
 
 .take-note__button:focus {
 	outline: var(--focus-outline);
+}
+
+/* Disabled Button */
+.take-note__button[disabled] {
+  background: var(--light-grey);
+  color: var(--grey);
+}
+
+/* Update button hidden by default */
+.take-note__button--update,
+.take-note__button--cancel {
+  display: none;
+}
+
+/* Show Update/Cancel, Hide Save */
+.is-updating .take-note__button--update,
+.is-updating .take-note__button--cancel {
+  display: inline-block;
+}
+.is-updating .take-note__button--save {
+  display: none;
 }
 
 .take-note__saved-list {

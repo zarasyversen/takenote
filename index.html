@@ -21,10 +21,12 @@
 		<main class="take-note__main take-note__wrapper">
 			<section class="take-note__section">
 				<h3>Make a new note</h3>
-				<form class="js-save-note">
+				<form class="js-note-form">
 					<label for="note" class="visually-hidden">Write a note that you want to save</label>
 					<textarea class="take-note__input js-note" id="note" required></textarea>
-					<button type="submit" class="take-note__button">Save your note</button>
+					<button type="button" class="take-note__button take-note__button--update js-update-note">Update your note</button>
+					<button type="button" class="take-note__button take-note__button--cancel js-cancel-note">Cancel</button>
+					<button type="submit" class="take-note__button take-note__button--save js-save-note">Save your note</button>
 				</form>
 			</section>
 			<section class="take-note__section js-saved-notes">

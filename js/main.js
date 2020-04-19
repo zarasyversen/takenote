@@ -24,7 +24,7 @@ if(!navigator.onLine) {
 //	Check that localstorage is supported
 //
 if (typeof(Storage) !== "undefined") {
-    var form = document.querySelector('.js-save-note');
+    var form = document.querySelector('.js-note-form');
 
     form.addEventListener('submit', addNoteToList);
 
@@ -116,23 +116,94 @@ function createList() {
 function createListItem(notesArray, index) {
 
     var listItem = document.createElement('li'),
-        note = document.createElement('p'),
-        removeBtn = document.createElement('button');
+        note = document.createElement('p');
 
     listItem.classList.add('take-note__saved-list-item');
     listItem.setAttribute('data-index', index);
 
     note.innerHTML = notesArray[index];
 
-    removeBtn.setAttribute('type', 'button');
-    removeBtn.innerHTML = 'Remove';
-    removeBtn.classList.add('js-delete-note', 'take-note__button');
+    // Remove Action
+    var removeBtn = createButton('Remove', ['js-delete-note', 'take-note__button']);
     removeBtn.addEventListener('click', deleteNoteFromList);
 
+    // Edit Action
+    var editBtn = createButton('Edit', ['js-edit-note', 'take-note__button']);
+    editBtn.addEventListener('click', editNoteFromList);
+
     listItem.appendChild(note);
+    listItem.appendChild(editBtn);
     listItem.appendChild(removeBtn);
 
     return listItem;
+}
+
+//
+// Create Button
+//
+function createButton(title, classList) {
+    var button = document.createElement('button');
+
+    button.setAttribute('type', 'button');
+    button.innerHTML = title;
+
+    for (var i = 0; classList.length > i; i++) {
+        button.classList.add(classList[i])
+    }
+
+    return button;
+}
+
+//
+// Edit Note
+//
+function editNoteFromList() {
+    var item = this.parentNode,
+        index = item.getAttribute('data-index'),
+        notesArray = JSON.parse(localStorage.getItem("notes")),
+        note = document.querySelector('.js-note'),
+        form = document.querySelector('.js-note-form'),
+        saveBtn = form.querySelector('.js-save-note'),
+        editBtn = form.querySelector('.js-update-note')
+        cancelBtn = form.querySelector('.js-cancel-note');
+
+        // Update elements
+        saveBtn.setAttribute('disabled', true);
+        form.classList.add('is-updating');
+        form.setAttribute('note-index', index);
+        cancelBtn.addEventListener('click', cancelEditNote);
+
+        // Add note in textarea
+        note.value = notesArray[index];
+
+        //
+        // Update Note in LocalStorage
+        //
+        editBtn.addEventListener('click', function() {
+            var currentIndex = form.getAttribute('note-index'),
+                currentItem = document.querySelector('[data-index="' + currentIndex + '"]');
+
+            notesArray[index] = note.value;
+
+            // Update Array in Local Storage
+            localStorage.setItem('notes', JSON.stringify(notesArray));
+
+            // Update HTML
+            currentItem.querySelector('p').innerHTML = note.value;
+        });
+}
+
+//
+// Cancel Edit
+//
+function cancelEditNote() {
+    var note = document.querySelector('.js-note'),
+        form = document.querySelector('.js-note-form'),
+        saveButton = form.querySelector('.js-save-note');
+
+        form.classList.remove('is-updating');
+        note.value = '';
+        saveButton.removeAttribute('disabled');
 }
 
 //
@@ -153,5 +224,5 @@ function deleteNoteFromList() {
         // Delete from dom
         item.remove();
     }
-
 }
+
