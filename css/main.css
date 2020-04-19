@@ -84,7 +84,7 @@ body {
 
 .take-note__button {
 	border: none;
-	margin: var(--spacing-small) 0 0;
+	margin: var(--spacing-small) var(--spacing-xsmall) 0;
 	padding: var(--spacing-small);
 	background: var(--button-background);
 	font-family: var(--font-family);
