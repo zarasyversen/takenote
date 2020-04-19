@@ -129,7 +129,7 @@ function createListItem(notesArray, index) {
 
     // Edit Action
     var editBtn = createButton('Edit', ['js-edit-note', 'take-note__button']);
-    editBtn.addEventListener('click', editNoteFromList);
+    editBtn.addEventListener('click', editNote);
 
     listItem.appendChild(note);
     listItem.appendChild(editBtn);
@@ -157,53 +157,79 @@ function createButton(title, classList) {
 //
 // Edit Note
 //
-function editNoteFromList() {
+function editNote() {
     var item = this.parentNode,
-        index = item.getAttribute('data-index'),
-        notesArray = JSON.parse(localStorage.getItem("notes")),
-        note = document.querySelector('.js-note'),
-        form = document.querySelector('.js-note-form'),
-        saveBtn = form.querySelector('.js-save-note'),
         editBtn = form.querySelector('.js-update-note')
         cancelBtn = form.querySelector('.js-cancel-note');
-
-        // Update elements
-        saveBtn.setAttribute('disabled', true);
-        form.classList.add('is-updating');
-        form.setAttribute('note-index', index);
+   
+        // Add Click Events
         cancelBtn.addEventListener('click', cancelEditNote);
+        editBtn.addEventListener('click', editNoteInList);
 
-        // Add note in textarea
-        note.value = notesArray[index];
-
-        //
-        // Update Note in LocalStorage
-        //
-        editBtn.addEventListener('click', function() {
-            var currentIndex = form.getAttribute('note-index'),
-                currentItem = document.querySelector('[data-index="' + currentIndex + '"]');
-
-            notesArray[index] = note.value;
-
-            // Update Array in Local Storage
-            localStorage.setItem('notes', JSON.stringify(notesArray));
-
-            // Update HTML
-            currentItem.querySelector('p').innerHTML = note.value;
-        });
+        // Update Form
+        updateForm(item);
 }
 
 //
 // Cancel Edit
 //
 function cancelEditNote() {
-    var note = document.querySelector('.js-note'),
-        form = document.querySelector('.js-note-form'),
-        saveButton = form.querySelector('.js-save-note');
+    var note = document.querySelector('.js-note');
+
+    note.value = '';
+    resetForm();
+}
+
+//
+// Edit Note in Local Storage
+//
+function editNoteInList() {
+    var notesArray = JSON.parse(localStorage.getItem("notes")),
+        currentIndex = form.getAttribute('note-index'),
+        currentItem = document.querySelector('[data-index="' + currentIndex + '"]');
+
+    notesArray[currentIndex] = note.value;
+
+    // Update Array in Local Storage
+    localStorage.setItem('notes', JSON.stringify(notesArray));
+
+    // Update List HTML to see right away.
+    currentItem.querySelector('p').innerHTML = note.value;
+
+    // Reset Form
+    resetForm();
+}
+
+//
+// Update the form for edit
+//
+function updateForm(item) {
+    var form = document.querySelector('.js-note-form'),
+        index = item.getAttribute('data-index'),
+        notesArray = JSON.parse(localStorage.getItem("notes")),
+        note = document.querySelector('.js-note'),
+        saveBtn = form.querySelector('.js-save-note');
+
+    // Update elements
+    saveBtn.setAttribute('disabled', true);
+    form.classList.add('is-updating');
+    form.setAttribute('note-index', index);
+
+    // Add note in textarea
+    note.value = notesArray[index];
+}
+
+//
+// Reset Form to save
+//
+function resetForm() {
+    var form = document.querySelector('.js-note-form'),
+        saveBtn = form.querySelector('.js-save-note'),
+        note = document.querySelector('.js-note');
 
         form.classList.remove('is-updating');
+        saveBtn.removeAttribute('disabled');
         note.value = '';
-        saveButton.removeAttribute('disabled');
 }
 
 //
