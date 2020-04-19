@@ -223,6 +223,19 @@ function deleteNoteFromList() {
 
         // Delete from dom
         item.remove();
+
+        updateDataIndex();
     }
 }
 
+//
+// Update ListItem Index Attribute
+//
+function updateDataIndex() {
+    var listItems = document.querySelectorAll('.take-note__saved-list-item');
+
+    for (var i = 0; listItems.length > i; i++) {
+        listItems[i].setAttribute('data-index', i);
+    }
+
+}
